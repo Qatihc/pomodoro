@@ -1,0 +1,11 @@
+.mainContainer {
+  display: flex;
+  min-height: 100vh;
+  flex-flow: column nowrap;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.pomodoroTitle {
+   font-size: 6rem;
+}

@@ -1,0 +1,19 @@
+.arrowButton {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  width: 100px;
+  height: 100px;
+}
+
+.arrowImg {
+  width: 40px;
+}
+
+.arrowUp {
+ 
+}
+
+.arrowDown {
+  transform: rotate(180deg);
+}
