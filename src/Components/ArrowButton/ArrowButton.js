@@ -4,7 +4,7 @@ import arrow from '~/assets/arrowx2.png'
 
 const ArrowButton = ({ className, onClick }) => {
   return (
-    <button className={`${className} ${styles.arrowButton}`} onClick={onClick}><img className={styles.arrowImg} src={arrow}></img></button>
+    <button className={`${className} ${styles.arrowButton}`} onClick={onClick}><i className={`fas fa-arrow-up ${styles.arrowIcon}`}></i></button>
   )
 }
 

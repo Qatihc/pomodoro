@@ -1,17 +1,17 @@
 import React, { useEffect, useState } from 'react';
+import Helmet from 'react-helmet';
 import { Counter } from '../Counter';
 import { WORK, BREAK } from '../../const/timerStatus';
 import { formatTime } from '../../utils';
+
 import styles from './Timer.module.css';
 
 const Timer = () => {
   console.log('render')
-  const [ breakCounter, setBreakCounter ] = useState(5 * 60);
-  const [ workCounter, setWorkCounter ] = useState(5 * 1);
-
+  const [ breakCounter, setBreakCounter ] = useState(60 * 5);
+  const [ workCounter, setWorkCounter ] = useState(60 * 25);
   const [ isPaused, setIsPaused ] = useState(true);
   const [ timerStatus, setTimerStatus ] = useState(WORK);
-
   const [ pomodoroTimer, setPomodoroTimer ] = useState(workCounter);
 
   useEffect(() => {
@@ -43,15 +43,26 @@ const Timer = () => {
     setPomodoroTimer(workCounter);
   }
 
+  const displayStatus = (isPaused) ? 'PAUSED' : timerStatus
   const {minutes, seconds} = formatTime(pomodoroTimer)
+  const toggleTimerButton = (isPaused) ? <i class="fas fa-play"></i> : <i class="fas fa-pause"></i>;
   return (
     <>
-      <Counter name={'Break'} setCounter={setBreakCounter} counter={breakCounter}/>
-      <Counter name={'Work'} setCounter={setWorkCounter} counter={workCounter}/>
-      <button onClick={handleToggleTimer}> play</button>
-      <button onClick={handleRestart}> restar</button>
-      {`${minutes}:${seconds}`}
-      {timerStatus}
+      <Helmet>
+        <title>{`Pomodoro | ${displayStatus} ${isPaused ? '' : minutes + ':' + seconds}`}</title>
+      </Helmet>
+      <div className={styles.countersContainer}>
+        <Counter name={'Break length'} setCounter={setBreakCounter} counter={breakCounter} loopAround={true}/>
+        <Counter name={'Session length'} setCounter={setWorkCounter} counter={workCounter} loopAround={true}/>
+      </div>
+      <div className={styles.timer}>
+        <span className={styles.minutes}>{minutes}</span>{seconds}
+      </div>
+      <span className={styles.status}>{displayStatus}</span>
+      <div className={styles.buttonsContainer}>
+        <button className={styles.button} onClick={handleToggleTimer}>{toggleTimerButton}</button>
+        <button className={styles.button} onClick={handleRestart}><i class="fas fa-redo-alt"></i></button>
+      </div>
     </>
   )
 }

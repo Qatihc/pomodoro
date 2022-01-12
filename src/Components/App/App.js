@@ -6,7 +6,7 @@ import styles from './App.module.css';
 const App = () => {
   return (
     <div className={styles.mainContainer}>
-     {/*  <h1 className={styles.pomodoroTitle}>Pomodoro</h1> */}
+      <h1 className={styles.pomodoroTitle}>Pomodoro</h1>
       <Timer />
     </div>
   )
