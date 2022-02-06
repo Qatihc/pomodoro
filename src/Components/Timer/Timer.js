@@ -3,11 +3,11 @@ import Helmet from 'react-helmet';
 import { Counter } from '../Counter';
 import { WORK, BREAK } from '../../const/timerStatus';
 import { formatTime } from '../../utils';
+import bell from '../../bell.mp3'
 
 import styles from './Timer.module.css';
 
 const Timer = () => {
-  console.log('render')
   const [ breakCounter, setBreakCounter ] = useState(60 * 5);
   const [ workCounter, setWorkCounter ] = useState(60 * 25);
   const [ isPaused, setIsPaused ] = useState(true);
@@ -26,6 +26,7 @@ const Timer = () => {
       if (pomodoroTimer > 0) return setPomodoroTimer((timer) => timer - 1);
       const nextTimerStatus = (timerStatus === WORK) ? BREAK : WORK;
       const nextPomodoroTimer = (timerStatus === WORK) ? breakCounter : workCounter;
+      bellAudio.play();
       setPomodoroTimer(nextPomodoroTimer);
       setTimerStatus(nextTimerStatus);
     }
@@ -43,8 +44,10 @@ const Timer = () => {
     setPomodoroTimer(workCounter);
   }
 
+  const bellAudio = new Audio(bell);
+
   const displayStatus = (isPaused) ? 'PAUSED' : timerStatus
-  const {minutes, seconds} = formatTime(pomodoroTimer)
+  const { minutes, seconds } = formatTime(pomodoroTimer)
   const toggleTimerButton = (isPaused) ? <i class="fas fa-play"></i> : <i class="fas fa-pause"></i>;
   return (
     <>

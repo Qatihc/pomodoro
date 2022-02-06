@@ -1,11 +1,12 @@
 const path = require('path');
+const isProduction = process.argv[process.argv.indexOf('--mode') + 1] === 'production';
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   output: {
     path: path.resolve(__dirname, 'build'),
     filename: 'bundle.js',
-    publicPath: '/'
+    publicPath: isProduction ? 'https://qatihc.github.io/pomodoro/' : '/'
   },
   entry: './src/index.js',
   resolve: {
@@ -35,7 +36,7 @@ module.exports = {
         ],
       },
       {
-        test: /\.(woff2?|jpe?g|png|gif|ico)$/, 
+        test: /\.(woff2?|jpe?g|png|gif|ico|mp3)$/, 
         use: 'file-loader?name=./assets/[name].[ext]'
       }
     ],
@@ -43,6 +44,7 @@ module.exports = {
   plugins: [
     new HtmlWebPackPlugin({
       template: './src/index.html',
+      favicon: "./src/favicon.ico"
     }),
   ],
   devtool: 'source-map',

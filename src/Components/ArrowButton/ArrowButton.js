@@ -1,6 +1,5 @@
 import React from 'react'
 import styles from './ArrowButton.module.css'
-import arrow from '~/assets/arrowx2.png'
 
 const ArrowButton = ({ className, onClick }) => {
   return (
