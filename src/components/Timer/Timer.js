@@ -52,7 +52,7 @@ const Timer = () => {
   return (
     <>
       <Helmet>
-        <title>{`Pomodoro | ${displayStatus} ${isPaused ? '' : minutes + ':' + seconds}`}</title>
+        <title>{`${displayStatus} ${isPaused ? '' : minutes + ':' + seconds} | Pomodoro `}</title>
       </Helmet>
       <div className={styles.countersContainer}>
         <Counter name={'Break length'} setCounter={setBreakCounter} counter={breakCounter} loopAround={true}/>
