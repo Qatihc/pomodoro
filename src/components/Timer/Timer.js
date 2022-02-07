@@ -3,7 +3,7 @@ import Helmet from 'react-helmet';
 import { Counter } from '../Counter';
 import { WORK, BREAK } from '../../const/timerStatus';
 import { formatTime } from '../../utils';
-import bell from '../../bell.mp3'
+import bell from '../../../assets/bell.mp3'
 
 import styles from './Timer.module.css';
 
@@ -48,7 +48,7 @@ const Timer = () => {
 
   const displayStatus = (isPaused) ? 'PAUSED' : timerStatus
   const { minutes, seconds } = formatTime(pomodoroTimer)
-  const toggleTimerButton = (isPaused) ? <i class="fas fa-play"></i> : <i class="fas fa-pause"></i>;
+  const toggleTimerButton = (isPaused) ? <i className="fas fa-play"></i> : <i className="fas fa-pause"></i>;
   return (
     <>
       <Helmet>
@@ -64,7 +64,7 @@ const Timer = () => {
       <span className={styles.status}>{displayStatus}</span>
       <div className={styles.buttonsContainer}>
         <button className={styles.button} onClick={handleToggleTimer}>{toggleTimerButton}</button>
-        <button className={styles.button} onClick={handleRestart}><i class="fas fa-redo-alt"></i></button>
+        <button className={styles.button} onClick={handleRestart}><i className="fas fa-redo-alt"></i></button>
       </div>
     </>
   )
